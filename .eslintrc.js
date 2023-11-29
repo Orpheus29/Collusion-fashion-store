@@ -20,7 +20,7 @@ module.exports = {
     },
     rules: {
         "no-console": "off",
-        indent: ["error", 4],
+        indent: ["error", 2],
         "@typescript-eslint/indent": "off",
         quotes: ["error", "double"],
         "@typescript-eslint/quotes": "off",

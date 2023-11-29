@@ -15,9 +15,7 @@ $media-breakpoints: (
     "desktop": 1800px
 );
 
-@use "../vendor/include-media/include-media" as im with (
-    $breakpoints: $media-breakpoints
-);
+@use "../vendor/include-media/include-media" as im with ($breakpoints: $media-breakpoints);
 
 @forward "../vendor/include-media/include-media" as im-*;
 
@@ -94,6 +92,7 @@ $media-breakpoints: (
         @content;
     }
 }
+
 ///
 /// Syntactic sugar for media query ">=desktop"
 /// @content @media rule content

@@ -3,13 +3,11 @@
     "src/**/*.ts"
   ],
   "compilerOptions": {
+    "types": ["node"],
     "incremental": true,
     "target": "ES5",
     "module": "commonjs",
-    "lib": [
-      "DOM",
-      "ESNext"
-    ],
+    "lib": ["DOM", "ESNext"],
     "esModuleInterop": true,
     "allowJs": true,
     "checkJs": false,
@@ -21,6 +19,7 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   }
 }

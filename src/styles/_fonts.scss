@@ -14,6 +14,16 @@
     }
 }
 
+// @mixin fontFaceTrue($fontFamily, $ttfUrl) {
+//     @font-face {
+//         font-family: $fontFamily;
+//         src:
+//             url($ttfUrl) format("truetype")
+//     }
+// }
+
 /////
 // Import any external fonts you might use below (help yourself with the fontFace mixin).
 /////
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

@@ -1,0 +1,39 @@
+<div class="page__container">
+  <section class="header__content">
+    <div class="header__logo">
+      <a href="/" class="header__logo-link">
+        <h2 class="header__logo-title">your logo</h2>
+      </a>
+    </div>
+
+    <nav class="header__menu">
+      {% set menuItems = [ { link: '/', title: 'home' }, { link: 'shop.html',
+      title: 'shop' }, { link: 'lookbook.html', title: 'lookbook' }, { link:
+      'features.html', title: 'features' }, { link: 'pages.html', title: 'pages'
+      }, { link: 'blog.html', title: 'blog' } ] %}
+
+      <ul class="header__menu-list">
+        {% for menuItem in menuItems %}
+        <li>
+          <a class="header__menu-list-item" href="{{ menuItem.link }}"
+            >{{ menuItem.title }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header__icons">
+      {% set headerIcons = [ { link: '#', type: 'search' }, { link: '#', type:
+      'heart' }, { link: '#', type: 'cart' }, { link: '#menu', type: 'menu' } ]
+      %}
+      <ul class="header__icons-list">
+        {% for icon in headerIcons %}
+        <li>
+          <a class="icon icon--{{ icon.type }}" href="{{ icon.link }}"> </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</div>

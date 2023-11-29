@@ -1,0 +1,37 @@
+  {% set women = [ { path: '../../assets/images/block-2/block-2-photo-1.png', brand: 'puma', alttext: 'womenclothimage-1', article: 'blue t-shirt', oldprice: '29', newprice: '19' }, { path: '../../assets/images/block-2/block-2-photo-2.png', brand: 'forever 35', alttext: 'womenclothimage-2', article: 'blue blouse', oldprice: '199', newprice: '99' }, { path: '../../assets/images/block-2/block-2-photo-3.png', brand: 'benetton', alttext: 'womenclothimage-3', article: 'red-striped t-shirt', oldprice: '39', newprice: '19' }, { path: '../../assets/images/block-2/block-2-photo-4.png', brand: 'polo', alttext: 'womenclothimage-4', article: 'black jacket', oldprice: '229', newprice: '129' } ] %}
+
+  {% set men = [ { path: '../../assets/images/block-3/block-3-photo-1.png', brand: 'armani', alttext: 'menclothimage-1', article: 'sleeveless jacket', oldprice: '229', newprice: '129' }, { path: '../../assets/images/block-3/block-3-photo-2.png', brand: 'tommy hilfiger', alttext: 'menclothimage-2', article: 'sleeveless shirt', oldprice: '179', newprice: '99' }, { path: '../../assets/images/block-3/block-3-photo-3.png', brand: 'givenchy', alttext: 'menclothimage-3', article: 'long sleeve', oldprice: '119', newprice: '79' }, { path: '../../assets/images/block-3/block-3-photo-4.png', brand: 'puma', alttext: 'menclothimage-4', article: 'pink hoody', oldprice: '169', newprice: '99' } ] %}
+
+  {% set values = [ { title: 'wo', subtitle: 'Shop our new arrivals for women from established brands', gender: women }, { title: '', subtitle: 'Shop our new arrivals for men from established brands', gender: men } ] %}
+
+  {% for value in values %}
+
+  <section class="main__fashion" role="region">
+
+  <h3 class="main__fashion-title">{{ value.title }}men's fashion</h3>
+
+  <p class="main__fashion-subtitle">{{ value.subtitle }}</p>
+
+  <div class="main__fashion-cardcontainer">
+    {% for card in value.gender %}
+    <article class="main__fashion-card">
+      <a href="#" class="main__fashion-card-link">
+        <img
+          class="main__fashion-card-image"
+          src="{{ card.path }}"
+          alt="{{ card.alttext }}"
+        />
+
+        <p class="main__fashion-card-brand">{{ card.brand }}</p>
+
+        <p class="main__fashion-card-article">{{ card.article }}</p>
+
+        <div class="main__fashion-card-prices">
+          <p class="main__fashion-card-prices--old">${{ card.oldprice }}.00</p>
+          <p class="main__fashion-card-prices--new">${{ card.newprice }}.00</p>
+        </div>
+      </a>
+    </article>
+    {% endfor %}
+  </section>
+  {% endfor %}

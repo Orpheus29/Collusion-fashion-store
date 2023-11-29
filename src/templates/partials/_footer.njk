@@ -1,0 +1,107 @@
+<div class="page__container">
+  <section class="footer__contacts">
+    <article class="footer__contacts-info">
+      <a href="/" class="header__logo-link">
+        <h3 class="footer__contacts-title">your logo</h3>
+      </a>
+
+      <p class="footer__contacts-info-text">
+        We earned a reputation of being good at what we do. Let us take your
+        online shop to new dimension in success!
+      </p>
+
+      <p class="footer__contacts-info-address">
+        <a
+          class="footer__contacts-link"
+          href="https://maps.app.goo.gl/knu4areTU2KmSkde9"
+          target="_blank"
+        >
+          Cumilla, Bangladesh 3500
+        </a>
+      </p>
+
+      <p class="footer__contacts-info-email">
+        <a
+          class="footer__contacts-link footer__contacts-link--email"
+          href="mailto:kawsarahmed0210@gmail.com"
+          target="_blank"
+        >
+          kawsarahmed0210@gmail.com
+        </a>
+      </p>
+
+      <p class="footer__contacts-info-phone">
+        <a class="footer__contacts-link" href="tel:01647470457">
+          01647470457
+        </a>
+      </p>
+
+      <div class="footer__contacts-socialmedia">
+        {% set footerSMIcons = [ { link: 'https://www.facebook.com', type:
+        'facebook' }, { link: 'https://www.instagram.com', type: 'instagram' },
+        { link: 'https://twitter.com/home', type: 'twitter' }, { link:
+        'https://www.linkedin.com', type: 'linkedin' } ] %}
+
+        <ul class="footer__contacts-socialmedia-icons">
+          {% for icon in footerSMIcons %}
+          <li>
+            <a
+              class="footer__contacts-socialmedia-icon {{ icon.type }}"
+              href="{{ icon.link }}"
+            >
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+
+    <article class="footer__contacts-sitemap">
+      <h3 class="footer__contacts-title">receive email updates</h3>
+      <form
+        action="#"
+        class="footer__contacts-form"
+        onsubmit="this.reset(); return false;"
+      >
+        <input
+          class="footer__contacts-form-input"
+          name="contacts-email"
+          type="email"
+          placeholder="Your email address"
+          required
+        />
+
+        <button class="footer__contacts-form-button" type="submit">join</button>
+      </form>
+
+      <div class="footer__contacts-sitemap-tree">
+        {% set sitemapItems = [ { link: '', name: 'shop' }, { link: '', name:
+        'help' }, { link: '', name: 'about' }, { link: '', name: 'Shop' }, {
+        link: '', name: 'FAQ' }, { link: '', name: 'Journal' }, { link: '',
+        name: 'Collection' }, { link: '', name: 'Privacy Policy' }, { link: '',
+        name: 'Our Story' }, { link: '', name: 'Outlet' }, { link: '', name:
+        'Terms and Conditions' }, { link: '', name: 'Contact' }, { link: '',
+        name: 'Lookbook' }, { link: '', name: 'Return and Exchange' }, { link:
+        '', name: 'Store Location' } ] %}
+
+        <ul class="footer__contacts-sitemap-tree-list">
+          {% for item in sitemapItems %}
+          <li class="footer__contacts-sitemap-tree-item">
+            <a class="footer__contacts-sitemap-tree-link" href="#">
+              {{ item.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </article>
+  </section>
+</div>
+
+<section class="footer__bottom-block">
+  <div class="page__container">
+    <p class="footer__bottom-block-text">
+      Copyright © 2020. Your company name. All rights reserved
+    </p>
+  </div>
+</section>

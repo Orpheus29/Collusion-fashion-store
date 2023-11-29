@@ -1,0 +1,43 @@
+<aside class="page__menu page__sidebar" id="menu">
+  <div class="page__container">
+    <div class="header__content page__menu-top">
+      <div class="header__logo header__logo--sidebar">
+        <a href="/" class="header__logo-link">
+          <h2 class="header__logo-title">your logo</h2>
+        </a>
+      </div>
+
+      <a href="#" class="page__menu-top-icon page__menu-top-icon--close"> </a>
+    </div>
+
+    <div class="page__menu-bottom">
+      <nav class="page__menu-nav">
+        {% set menuItems = [ { link: '/', title: 'home' }, { link: 'shop.html',
+        title: 'shop' }, { link: 'lookbook.html', title: 'lookbook' }, { link:
+        'features.html', title: 'features' }, { link: 'pages.html', title:
+        'pages' }, { link: 'blog.html', title: 'blog' } ] %}
+
+        <ul class="page__menu-nav-list">
+          {% for menuItem in menuItems %}
+          <li class="page__menu-nav-item">
+            <a class="page__menu-nav-link" href="{{ menuItem.link }}"
+              >{{ menuItem.title }}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <a href="tel:+1 016 4747-04-57" class="page__menu-phone-number">
+        +1 016 4747-04-57
+      </a>
+
+      <a
+        href="mailto:kawsarahmed0210@gmail.com"
+        class="page__menu-book-a-test-ride"
+      >
+        Get inquire by email
+      </a>
+    </div>
+  </div>
+</aside>

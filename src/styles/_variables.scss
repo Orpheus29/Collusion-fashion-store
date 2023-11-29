@@ -1,5 +1,5 @@
 /**
- * Store your colors, fonts, sizes and other important variables in this file.
+ * Store your colours, fonts, sizes and other important variables in this file.
  */
 
 
@@ -7,20 +7,16 @@
 // COLOURS
 // Store your colours here.
 /////
-$colour-white: #efefef;
-$colour-black: #1a1a1a;
+$colour-white: #fff;
+$colour-black: #000;
 
-$color-background-dark: #252525;
+$colour-background-dark: #252525;
+$colour-background-grey: #c4c4c4;
+$colour-background-footer: #e7f5f8;
+$colour-background-contacts: #f2f8fc;
 
-// Primary
-$colour-primary-light: #bef67a;
-$colour-primary: #8bc34a;
-$colour-primary-dark: #58812f;
-
-// Secondary
-$colour-secondary-light: #009688;
-$colour-secondary: #52c7b8;
-$colour-secondary-dark: #00675b;
+$colour-text: #22262a;
+$colour-rebate: #cf2929;
 
 
 /////
@@ -30,5 +26,11 @@ $colour-secondary-dark: #00675b;
 
 // Based on GitHub's font stack
 // More information: https://css-tricks.com/snippets/css/system-font-stack/
-$font-family-native: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// $font-family-native: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+//     sans-serif, "Apple colour Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$font-family-poppins: "Poppins", sans-serif;
+
+$primary-font-size: 18px;
+$primary-font-weight: 500;
+$common-line-height: 150%;

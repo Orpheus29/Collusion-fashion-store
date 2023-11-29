@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{% block htmlLang %}en{% endblock %}">
+{% block html %}<html lang="{% block htmlLang %}en{% endblock %}" class="page">{% endblock %}
 
 {% block head %}
 <head>
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {% endblock %}
 
-    <title>{% block headTitle %}{% endblock %}</title>
+    <title>{% block headTitle %}Collusion{% endblock %}</title>
 
     {% block headEnd %}{% endblock %}
 </head>
@@ -20,14 +20,17 @@
 {# The whole body block can be overriden by using the "body" block #}
 {# NOTE: If the "body" block is used, using any blocks contained in it (in the template) will have no effect! #}
 {% block body %}
-<body>
+<body class="page__body">
 
     {% block headerOuter %}
-    <header class="header" role="banner">
+    <header class="header" role="navigation">
         {% block header %}
+        {% include "partials/_header.njk" %}
         {% endblock %}
     </header>
     {% endblock %}
+
+    {% include "partials/_aside.njk" %}
 
     {% block mainOuter %}
     <main class="main" role="main">
@@ -39,6 +42,7 @@
     {% block footerOuter %}
     <footer class="footer" role="contentinfo">
         {% block footer %}
+        {% include "partials/_footer.njk" %}
         {% endblock %}
     </footer>
     {% endblock %}
