@@ -6,6 +6,7 @@
   "author": "Oleksii Andriushyn",
   "license": "MIT",
   "packageManager": "yarn@3.2.1",
+  "homepage": "https://Orpheus29.github.io/Collusion-fashion-store",
   "scripts": {
     "dev": "NODE_ENV=development IS_SINGLE_BUILD=false webpack serve --config config/webpack.config.ts",
     "build": "NODE_ENV=production IS_SINGLE_BUILD=true webpack build --config config/webpack.config.ts",
