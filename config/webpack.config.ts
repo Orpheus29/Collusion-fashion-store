@@ -218,7 +218,7 @@ const config: Configuration & Record<string, any> = {
                 test: /\.(jpg|jpeg|png|webp|gif|svg)/i,
                 type: "asset/resource",
                 generator: {
-                    filename: "./assets/images/[name]-[fullhash][ext]"
+                    filename: "./assets/images/[name][ext]"
                 }
             },
             /*
