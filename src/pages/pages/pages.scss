@@ -1,8 +1,28 @@
+@use "../../styles/modules/media";
+
 .main {
     background-color: rgb(237, 243, 204);
 
     &__fashion {
         margin-top: 0;
         padding-block: 20px;
+
+        &-avone-image {
+            &--1 {
+                @include media.tabletPortraitUp {
+                    box-shadow: 15px -15px rgb(237, 243, 204);
+                }
+            }
+
+            &--3 {
+                @include media.tabletPortraitUp {
+                    box-shadow: -15px -15px rgb(237, 243, 204);
+                }
+
+                @include media.laptopUp {
+                    box-shadow: -25px -22px rgb(237, 243, 204);
+                }
+            }
+        }
     }
 }
