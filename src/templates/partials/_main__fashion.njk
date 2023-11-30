@@ -6,7 +6,7 @@
 
   {% for value in values %}
 
-  <section class="main__fashion" role="region">
+  <section class="main__fashion">
 
   <h3 class="main__fashion-title">{{ value.title }}men's fashion</h3>
 
@@ -14,13 +14,13 @@
 
   <div class="main__fashion-cardcontainer">
     {% for card in value.gender %}
-    <article class="main__fashion-card">
+    <div class="main__fashion-card">
       <a href="#" class="main__fashion-card-link">
         <img
           class="main__fashion-card-image"
           src="{{ card.path }}"
           alt="{{ card.alttext }}"
-        />
+        >
 
         <p class="main__fashion-card-brand">{{ card.brand }}</p>
 
@@ -31,7 +31,7 @@
           <p class="main__fashion-card-prices--new">${{ card.newprice }}.00</p>
         </div>
       </a>
-    </article>
+    </div>
     {% endfor %}
   </section>
   {% endfor %}

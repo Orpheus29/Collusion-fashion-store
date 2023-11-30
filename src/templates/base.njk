@@ -6,9 +6,17 @@
     {% block headStart %}{% endblock %}
 
     {% block headMeta %}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% endblock %}
+
+    {% block favIcon %}
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../favicons/favicon.png"
+    >
     {% endblock %}
 
     <title>{% block headTitle %}Collusion{% endblock %}</title>
@@ -23,7 +31,7 @@
 <body class="page__body">
 
     {% block headerOuter %}
-    <header class="header" role="navigation">
+    <header class="header">
         {% block header %}
         {% include "partials/_header.njk" %}
         {% endblock %}
@@ -33,14 +41,14 @@
     {% include "partials/_aside.njk" %}
 
     {% block mainOuter %}
-    <main class="main" role="main">
+    <main class="main">
         {% block main %}
         {% endblock %}
     </main>
     {% endblock %}
 
     {% block footerOuter %}
-    <footer class="footer" role="contentinfo">
+    <footer class="footer">
         {% block footer %}
         {% include "partials/_footer.njk" %}
         {% endblock %}

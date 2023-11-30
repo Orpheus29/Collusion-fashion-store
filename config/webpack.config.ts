@@ -115,7 +115,7 @@ pages.forEach((page: Page) => {
     if (page.entryScriptPath !== null) {
         webpackEntryMap[page.name] = {
             "import": page.entryScriptPath,
-            "filename": `scripts/${page.name}-[fullhash].js`,
+            "filename": `scripts/${page.name}-[contenthash].js`,
         };
     }
 });
@@ -132,125 +132,130 @@ const webpackPlugins: any[] = pages.map((page: Page) => {
 
 
 const config: Configuration & Record<string, any> = {
-    mode: IS_PRODUCTION ? "production" : "development",
-    entry: {
-        ...webpackEntryMap,
+  mode: IS_PRODUCTION ? "production" : "development",
+  entry: {
+    ...webpackEntryMap,
+  },
+  plugins: [
+    ...webpackPlugins,
+    new MiniCssExtractPlugin({
+      filename: IS_PRODUCTION
+        ? "./styles/[name]-[contenthash].css"
+        : "./styles/[name].css",
+      chunkFilename: IS_PRODUCTION
+        ? "./styles/[name]-[contenthash].css"
+        : "./styles/[name].css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        ...(fs.existsSync("src/static")
+          ? [{ from: "src/static", to: "assets" }]
+          : []),
+        ...(fs.existsSync("src/favicons")
+          ? [{ from: "src/favicons", to: "." }]
+          : []),
+      ],
+    }),
+  ],
+  output: {
+    filename: "[name]-[contenthash].js",
+    clean: true,
+    assetModuleFilename: "./assets/[name]-[contenthash][ext]",
+  },
+  devtool: IS_PRODUCTION ? "nosources-source-map" : "eval-source-map",
+  devServer: {
+    hot: true,
+    liveReload: true,
+    watchFiles: ["src/**/*"],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        // This option ensures the shared stylesheet has its own chunk that is shared between pages.
+        siteStyles: {
+          name: "site",
+          test: /src[\\/]styles[\\/]/i,
+          chunks: "all",
+          minSize: 0,
+        },
+      },
     },
-    plugins: [
-        ...webpackPlugins,
-        new MiniCssExtractPlugin({
-            filename: IS_PRODUCTION ? "./styles/[name]-[fullhash].css" : "./styles/[name].css",
-            chunkFilename: IS_PRODUCTION ? "./styles/[name]-[fullhash].css" : "./styles/[name].css",
-        }),
-        new CopyWebpackPlugin({
-            patterns: [
-                ...(
-                    fs.existsSync("src/static")
-                        ? [{ from: "src/static", to: "assets" }] : []
-                ),
-                ...(
-                    fs.existsSync("src/favicons")
-                        ? [{ from: "src/favicons", to: "." }] : []
-                ),
-            ]
-        }),
-    ],
-    output: {
-        filename: "[name]-[fullhash].js",
-        clean: true,
-        assetModuleFilename: "./assets/[name]-[fullhash][ext]",
-    },
-    devtool: IS_PRODUCTION ? "nosources-source-map" : "eval-source-map",
-    devServer: {
-        hot: true,
-        liveReload: true,
-        watchFiles: ["src/**/*"],
-    },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                // This option ensures the shared stylesheet has its own chunk that is shared between pages.
-                siteStyles: {
-                    name: "site",
-                    test: /src[\\/]styles[\\/]/i,
-                    chunks: "all",
-                    minSize: 0,
-                }
+  },
+  module: {
+    rules: [
+      /*
+       * The following rule takes care of emiting CSS files or hot-loading them when developing.
+       */
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          IS_PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
+          // MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass"),
+              sourceMap: !IS_PRODUCTION,
+              sassOptions: {
+                outputStyle: IS_PRODUCTION ? "compressed" : "expanded",
+              },
+            },
+          },
+        ],
+      },
+      /*
+       * The following rule uses Babel to convert modern JS syntax to ES5.
+       */
+      {
+        test: /\.(js|ts|jsx|tsx)/i,
+        include: path.resolve("src"),
+        loader: "babel-loader",
+        options: babelConfig,
+      },
+      /*
+       * The following rule emits any used images into the build folder.
+       */
+      {
+        test: /\.(jpg|jpeg|png|webp|gif|svg)/i,
+        type: "asset/resource",
+        generator: {
+          filename: "./assets/images/[name]-[contenthash][ext]",
+        },
+      },
+      /*
+       * This rule parses HTML files and makes sure any <link>/<script>/... tags are properly parsed.
+       */
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+      {
+        test: /\.njk$/i,
+        loader: "html-loader",
+        options: {
+          preprocessor: (
+            content: string | Buffer,
+            context: LoaderContext<unknown>
+          ) => {
+            let rawContent: string;
+            if (typeof content === "string") {
+              rawContent = content;
+            } else {
+              rawContent = content.toString("utf-8");
             }
-        }
-    },
-    module: {
-        rules: [
-            /*
-             * The following rule takes care of emiting CSS files or hot-loading them when developing.
-             */
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    IS_PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
-                    // MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            implementation: require("sass"),
-                            sourceMap: !IS_PRODUCTION,
-                            sassOptions: {
-                                outputStyle: IS_PRODUCTION ? "compressed" : "expanded"
-                            }
-                        }
-                    }
-                ],
-            },
-            /*
-             * The following rule uses Babel to convert modern JS syntax to ES5.
-             */
-            {
-                test: /\.(js|ts|jsx|tsx)/i,
-                include: path.resolve("src"),
-                loader: "babel-loader",
-                options: babelConfig,
-            },
-            /*
-             * The following rule emits any used images into the build folder.
-             */
-            {
-                test: /\.(jpg|jpeg|png|webp|gif|svg)/i,
-                type: "asset/resource",
-                generator: {
-                    filename: "./assets/images/[name][ext]"
-                }
-            },
-            /*
-             * This rule parses HTML files and makes sure any <link>/<script>/... tags are properly parsed.
-             */
-            {
-                test: /\.html$/i,
-                loader: "html-loader"
-            },
-            {
-                test: /\.njk$/i,
-                loader: "html-loader",
-                options: {
-                    preprocessor: (content: string | Buffer, context: LoaderContext<unknown>) => {
-                        let rawContent: string;
-                        if (typeof content === "string") {
-                            rawContent = content;
-                        } else {
-                            rawContent = content.toString("utf-8");
-                        }
 
-                        try {
-                            return nunjucksEnv.renderString(rawContent, {});
-                        } catch (err) {
-                            // @ts-ignore
-                            context.emitError(err);
-                        }
-                    },
-                }
+            try {
+              return nunjucksEnv.renderString(rawContent, {});
+            } catch (err) {
+              // @ts-ignore
+              context.emitError(err);
             }
-        ]
-    },
+          },
+        },
+      },
+    ],
+  },
 };
 
 module.exports = config;
