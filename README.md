@@ -28,10 +28,10 @@ Enjoy your shopping experience! 💃🛍️
 
 <h2 align="center">📌Instructions how to run application locally📌</h2>
 
-To get started *fork*, *clone* or *download* the repository.
+To continue working on the website, *fork*, *clone* or *download* the repository.
 
 #### Cloning or downloading
-In order to clone this repository, run the command below or use the download button.
+In order to clone this repository, run the command below; if you wish to download it, follow the *Code / Download ZIP* link.
 ```
 git clone https://github.com/Orpheus29/Collusion-fashion-store.git
 ```
