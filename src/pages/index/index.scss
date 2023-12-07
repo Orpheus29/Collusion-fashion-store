@@ -238,8 +238,12 @@
 
                     @include media.tabletLandscapeUp {
                         bottom: 25px;
+                        padding-block: 4px;
+                    }
+
+                    @include media.laptopUp {
                         left: 28px;
-                        padding: 4px 24px;
+                        padding-inline: 24px;
                     }
                 }
 
