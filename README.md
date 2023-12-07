@@ -26,7 +26,7 @@ Enjoy your shopping experience! 💃🛍️
 
  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![NUNJUCKS](https://img.shields.io/badge/Nunjucks-1C4913?style=for-the-badge&logo=nunjucks&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white) ![WebPack](https://img.shields.io/badge/Webpack-8DD6F9?style=for-the-badge&logo=Webpack&logoColor=white)
 
-<h2 align="center">📌Instructions how to run application locally📌</h2>
+<h2 align="center">📌Running your application locally📌</h2>
 
 To continue working on the site, *fork*, *clone* or *download* the repository.
 
